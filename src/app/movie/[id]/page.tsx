@@ -10,22 +10,25 @@ export default function Page() {
   const { id }: { id: string } = useParams();
   const [movie, setMovie] = useState<MovieDetail | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  async function getMovie() {
+    try {
+
+      const data = await fetchData<MovieDetail>(
+        `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_API_KEY}&i=${id}`,
+        { next: { revalidate: 3600 } }
+      );
+      setMovie(data);
+    } catch (error) {
+      console.error("영화 정보를 가져오는데 실패했습니다:", error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function getMovie() {
-      try {
-        const data = await fetchData<MovieDetail>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}${process.env.NEXT_PUBLIC_API_KEY}&i=${id}`,
-          { next: { revalidate: 3600 } }
-        );
-        setMovie(data);
-      } catch (error) {
-        console.error("영화 정보를 가져오는데 실패했습니다:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     getMovie();
   }, [id]);
 
@@ -33,7 +36,7 @@ export default function Page() {
     return <div>로딩 중...</div>;
   }
 
-  if (!movie) {
+  if (isError || !movie) {
     return <div>영화 정보를 찾을 수 없습니다.</div>;
   }
 

@@ -33,8 +33,8 @@ export default function MovieCard({ movie }: { movie: Movie }) {
             sizes="(max-width: 400px) 100vw, 400px"
           />
         </div>
-        <div className="p-4 flex flex-col gap-3">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 line-clamp-2">
+        <div className="flex-1 p-4 flex flex-col gap-3">
+          <h3 className="h-14 text-lg font-bold text-gray-900 dark:text-gray-100 line-clamp-2">
             {movie.Title}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">{movie.Year}</p>

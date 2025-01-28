@@ -24,7 +24,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <Link href={`/movie/${movie.imdbID}`}>
       <div className="group flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-        <div className="relative aspect-[2/3] overflow-hidden">
+        <div className="relative aspect-2/3 overflow-hidden">
           <Image
             className="object-cover transition-transform duration-300 group-hover:scale-110"
             src={movie.Poster === "N/A" ? NoImage : movie.Poster}

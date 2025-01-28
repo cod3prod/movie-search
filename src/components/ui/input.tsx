@@ -8,7 +8,7 @@ const Input = forwardRef<HTMLInputElement, ComponentPropsWithRef<"input">>(
       <input
         ref={ref}
         className={twMerge(
-          "w-full sm:w-2/3 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none",
+          "w-full sm:w-2/3 p-3 border border-gray-300 rounded-lg shadow-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-hidden",
           className
         )}
         {...rest}
